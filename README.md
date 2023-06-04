@@ -1,7 +1,7 @@
 # Movimiento-Básico-Unity
 Movimiento básico en Unity para principiantes. Este proyecto incluye movimiento básico y uso del Animator
 
-----------------Contenido----------------
+------------------------------------------------------Contenido------------------------------------------------------
 
 Movimiento: Poder mover al Player hacia delante y hacia atrás (W y S)
 
