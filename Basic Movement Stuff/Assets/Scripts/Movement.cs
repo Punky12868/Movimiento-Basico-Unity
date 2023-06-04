@@ -13,6 +13,8 @@ public class Movement : MonoBehaviour
 
     public float jumpForce; // Fuerza de salto
 
+    public bool isGrounded; // Determina si el jugador está tocando el suelo o no
+
     public Rigidbody rb; // Referencia para el Rigidbody
     public Animator anim; // Referencia para el Animator
 
@@ -53,7 +55,7 @@ public class Movement : MonoBehaviour
         #endregion
 
         #region Run And Animator Input
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W)) // Si apretas la tecla LShift + la W hace esto
+        if (Input.GetKey(KeyCode.LeftShift)) // Si apretas la tecla LShift hace esto
         {
             velocity = runVelocity; // La velocidad de caminar cambia a la de correr
             anim.SetBool("Run", true); // Le pone verdadero al bool Run del Animator
@@ -66,11 +68,25 @@ public class Movement : MonoBehaviour
         #endregion
 
         #region Jump And Animator Input
-        if (Input.GetKeyDown(KeyCode.Space)) // Si apretas Espacio hace esto
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) // Si apretas Espacio Y isGrounded es verdadero hace esto
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Le añade una fuerza de impulso hacia arriba al RigidBody, haciendo que el jugador salte
             anim.SetTrigger("Jump"); // Activa el trigger de Jump del Animator
         }
         #endregion
+    }
+    private void OnCollisionEnter(Collision collision) // Sirve para detectar si el jugador colisionó con algo
+    {
+        if (collision.gameObject.CompareTag("Ground")) // Si el objeto con el que colisionó es "Ground" hace esto
+        {
+            isGrounded = true; // El jugador está tocando el suelo, entonces se coloca como verdadero
+        }
+    }
+    private void OnCollisionExit(Collision collision) // Sirve para detectar si el jugador dejó de colisionar con algo
+    {
+        if (collision.gameObject.CompareTag("Ground")) // Si el objeto con el que dejó de colisionar es "Ground" hace esto
+        {
+            isGrounded = false; // El jugador dejó de tocar el suelo, entonces se coloca como falso
+        }
     }
 }

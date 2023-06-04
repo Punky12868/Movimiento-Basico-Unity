@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 215937956}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -555,6 +555,7 @@ MonoBehaviour:
   runVelocity: 8
   rotSpeed: 200
   jumpForce: 10
+  isGrounded: 0
   rb: {fileID: 0}
   anim: {fileID: 0}
 --- !u!65 &1461499558
